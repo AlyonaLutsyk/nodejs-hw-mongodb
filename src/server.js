@@ -3,7 +3,7 @@ import cors from 'cors';
 import contactsRouter from './routers/contacts.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
-// import { logger } from './middlewares/logger.js';
+import { logger } from './middlewares/logger.js';
 
 
 export const setupServer = () => {
@@ -13,7 +13,7 @@ export const setupServer = () => {
 
     app.use(express.json());
 
-    // app.use(logger);
+    app.use(logger);
 
     app.use("/contacts", contactsRouter);
 

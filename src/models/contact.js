@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+import { contactTypeList } from "../constants/contacts.js";
+
 const contactSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -18,11 +20,16 @@ const contactSchema = new mongoose.Schema({
   },
   contactType: {
     type: String,
-    enum: ['work', 'home', 'personal'],
+    enum: contactTypeList,
     required: true,
     default: 'personal',
   }
 }, { timestamps: true });
+
+contactSchema.post("save", (error, data, next) => {
+  error.status = 400;
+  next();
+});
 
 const Contact = mongoose.model("Contact", contactSchema);
 export default Contact;
