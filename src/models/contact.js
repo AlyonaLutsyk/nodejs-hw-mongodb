@@ -30,6 +30,6 @@ contactSchema.post("save", (error, data, next) => {
   error.status = 400;
   next();
 });
-
+export const sortByList = ["name", "phoneNumber", "email", "isFavourite", "contactType"];
 const Contact = mongoose.model("Contact", contactSchema);
 export default Contact;
