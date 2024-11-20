@@ -1,8 +1,10 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
+
+import { handleSaveError } from "./hooks.js";
 
 import { contactTypeList } from "../constants/contacts.js";
 
-const contactSchema = new mongoose.Schema({
+const contactSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -24,12 +26,11 @@ const contactSchema = new mongoose.Schema({
     required: true,
     default: 'personal',
   }
-}, { timestamps: true });
+}, {versionKey: false, timestamps: true });
 
-contactSchema.post("save", (error, data, next) => {
-  error.status = 400;
-  next();
-});
+contactSchema.post("save", handleSaveError);
+
 export const sortByList = ["name", "phoneNumber", "email", "isFavourite", "contactType"];
-const Contact = mongoose.model("Contact", contactSchema);
+
+const Contact = model("Contact", contactSchema);
 export default Contact;
