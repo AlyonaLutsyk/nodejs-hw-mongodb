@@ -31,7 +31,7 @@ const contactSchema = new Schema({
     ref: "user",
     required: true,
   }
-  
+
 }, {versionKey: false, timestamps: true });
 
 contactSchema.post("save", handleSaveError);
@@ -39,4 +39,5 @@ contactSchema.post("save", handleSaveError);
 export const sortByList = ["name", "phoneNumber", "email", "isFavourite", "contactType"];
 
 const Contact = model("Contact", contactSchema);
+
 export default Contact;
