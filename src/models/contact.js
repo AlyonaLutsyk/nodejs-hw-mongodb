@@ -25,7 +25,13 @@ const contactSchema = new Schema({
     enum: contactTypeList,
     required: true,
     default: 'personal',
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+    required: true,
   }
+  
 }, {versionKey: false, timestamps: true });
 
 contactSchema.post("save", handleSaveError);

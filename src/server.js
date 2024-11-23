@@ -3,6 +3,7 @@ import cors from 'cors';
 import contactsRouter from './routers/contacts.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import cookieParser from 'cookie-parser';
 // import { logger } from './middlewares/logger.js';
 
 import authRouter from './routers/auth.js';
@@ -13,6 +14,8 @@ export const setupServer = () => {
     app.use(cors());
 
     app.use(express.json());
+
+    app.use(cookieParser());
 
     // app.use(logger);
 
