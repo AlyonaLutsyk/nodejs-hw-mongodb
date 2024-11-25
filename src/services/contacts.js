@@ -29,10 +29,14 @@ const addContact = (payload) => {
 };
 
 
-const updateContact = (id, data, userId) => {
-
-    return Contact.findOneAndUpdate({ _id: id, userId }, data, { new: true });
+const updateContact = async (id, data, userId) => {
+    return Contact.findOneAndUpdate(
+        { _id: id, userId },
+        data, 
+        { new: true } 
+    );
 };
+
 
 const deleteContact = (id, userId) => {
     
